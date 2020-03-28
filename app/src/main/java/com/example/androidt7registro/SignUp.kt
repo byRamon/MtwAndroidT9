@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.DatePicker
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.*
 
@@ -28,8 +27,9 @@ class SignUp : AppCompatActivity() {
                 }, year, month, day)
             dpd.show()
         }
-        btn_ir_crearCuenta.setOnClickListener {
-
+        crear_cuenta.setOnClickListener {
+            val intent = Intent(this@SignUp, registros::class.java)
+            startActivity(intent)
         }
         btn_ir_inicioSesion.setOnClickListener{
             val intent = Intent(this@SignUp, Login::class.java)
