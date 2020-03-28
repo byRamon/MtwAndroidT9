@@ -5,7 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.DatePicker
+import com.example.androidt7registro.DataBase.DatabaseRegistros
+import com.example.androidt7registro.helper.DataConverter
+import com.example.androidt7registro.helper.doAsync
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.content_item.*
 import java.util.*
 
 class SignUp : AppCompatActivity() {
@@ -28,6 +32,10 @@ class SignUp : AppCompatActivity() {
             dpd.show()
         }
         crear_cuenta.setOnClickListener {
+            val registro = com.example.androidt7registro.DataBase.Registro(et_nombre.text.toString(), Date())
+            doAsync{
+                DatabaseRegistros.getInstance(this)!!.registroDao().insertRegistro(registro)
+            }.execute()
             val intent = Intent(this@SignUp, registros::class.java)
             startActivity(intent)
         }
